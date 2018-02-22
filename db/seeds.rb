@@ -1,4 +1,5 @@
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum suscipit neque eteleifend. Quisque dignissim ornare tortor vitae ullamcorper. Pellentesque id molestie enim.Ut tempus turpis at quam tempus blandit. In ut ultricies mi, eu pellentesque nibh."
+device_names = ["drone", "camera", "scooter", "surfboard"]
 
 10.times do
   User.create(email: Faker::Internet.email,
@@ -9,7 +10,7 @@ end
 
 30.times do
   Device.create(user_id: rand(10),
-                name: Faker::Fallout.character,
+                name: device_names.sample,
                 photo_url: "https://dronelife.com/wp-content/uploads/2018/01/mavicAir-e1516727107180.jpg",
                 description: lorem,
                 price: Faker::Number.decimal(2),
