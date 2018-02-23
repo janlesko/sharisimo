@@ -1,6 +1,8 @@
 class DevicesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+
   def index
-     @devices = current_user.devices
+    @devices = current_user.devices
   end
 
   def show
