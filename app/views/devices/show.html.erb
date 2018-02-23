@@ -3,6 +3,6 @@
 <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @device.photo_url %>);">
 </div>
 <p><%= @device.description %></p>
-<%= link_to "Inquire about booking this device", new_booking_path(@device) %>
+<%= link_to "Inquire about booking this device", new_device_booking_path(@device) %>
 
 
