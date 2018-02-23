@@ -1,5 +1,5 @@
-class DevicesController < ApplicationController
+class Admin::DevicesController < ApplicationController
   def index
-    @devices = Device.all
+     @devices = current_user.devices
   end
 end
