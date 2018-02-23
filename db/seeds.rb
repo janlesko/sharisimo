@@ -1,5 +1,10 @@
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum suscipit neque eteleifend. Quisque dignissim ornare tortor vitae ullamcorper. Pellentesque id molestie enim.Ut tempus turpis at quam tempus blandit. In ut ultricies mi, eu pellentesque nibh."
-device_names = ["drone", "camera", "scooter", "surfboard"]
+device_categories = ["drone", "camera", "scooter", "surfboard"]
+
+photos = { camera: ["https://i.imgur.com/V8GYl2a.jpg", "https://i.imgur.com/EkY4EFT.jpg", "https://i.imgur.com/K0h2i8C.jpg"],
+           drone: ["https://i.imgur.com/FRHRHNc.jpg", "https://i.imgur.com/VwL1e5i.jpg", "https://i.imgur.com/sjH32ko.jpg"],
+           scooter: ["https://i.imgur.com/rf53Fuf.jpg", "https://i.imgur.com/VDIzsZm.jpg", "https://i.imgur.com/jmY4wgg.jpg"],
+           surfboard: ["https://i.imgur.com/WpS5E1Q.jpg", "https://i.imgur.com/ZUN3DfL.jpg"] }
 
 10.times do
   User.create(email: Faker::Internet.email,
@@ -9,10 +14,11 @@ device_names = ["drone", "camera", "scooter", "surfboard"]
 end
 
 30.times do
+  category = device_categories.sample
   Device.create(user_id: rand(10),
                 name: Faker::Fallout.character,
-                category: device_names.sample,
-                photo_url: "https://dronelife.com/wp-content/uploads/2018/01/mavicAir-e1516727107180.jpg",
+                category: category,
+                photo_url: photos[category.to_sym].sample,
                 description: lorem,
                 price: Faker::Number.decimal(2),
                 availability: [true, false].sample)
