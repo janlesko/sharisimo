@@ -3,10 +3,11 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1>New booking</h1>
 
-      <%= simple_form_for [@devices, @bookings] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit "book this device", class: "btn btn-primary" %>
-<% end %>
+      <%= simple_form_for([@device, @booking]) do |f| %>
+      <%= f.input :message %>
+      <%= f.input :state %>
+      <%= f.submit "book this device", class: "btn btn-primary" %>
+      <% end %>
 
     </div>
   </div>
