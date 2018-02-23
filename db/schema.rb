@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20180221090925) do
   create_table "devices", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name"
-    t.string "category"
     t.string "photo_url"
     t.string "description"
     t.boolean "availability"
