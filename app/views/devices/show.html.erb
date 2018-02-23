@@ -1,0 +1,8 @@
+<h1><%= @device.name %></h1>
+<h2><%= @device.category %>: <%= @device.price %></h2>
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @device.photo_url %>);">
+</div>
+<p><%= @device.description %></p>
+<%= link_to "Inquire about booking this device", new_booking_path(@device) %>
+
+
