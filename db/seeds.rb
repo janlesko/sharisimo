@@ -10,7 +10,8 @@ end
 
 30.times do
   Device.create(user_id: rand(10),
-                name: device_names.sample,
+                name: Faker::Fallout.character,
+                category: device_names.sample,
                 photo_url: "https://dronelife.com/wp-content/uploads/2018/01/mavicAir-e1516727107180.jpg",
                 description: lorem,
                 price: Faker::Number.decimal(2),
