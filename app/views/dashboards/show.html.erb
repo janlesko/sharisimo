@@ -1,2 +1,13 @@
-<h1>Dashboard#show</h1>
-<p>Find me in app/views/dashboard/show.html.erb</p>
+<h1>My Bookings</h1>
+<% @bookings.each do |booking| %>
+<h2><%= booking.device.name %></h2>
+
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= booking.device.photo_url %>);">
+  <div class="card-content">
+    <%= booking.device.category %>
+  </div>
+</div>
+
+<h3><%= booking.message %></h3>
+
+<% end %>
