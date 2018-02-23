@@ -8,10 +8,14 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.device = Device.find(params[:device_id])
+    @device =Device.find(params[:device_id])
+    @booking.device =  @device
     @booking.user = current_user
-    @booking.save
-    redirect_to device_path()
+    if @booking.save
+      redirect_to dashboard_path(current_user)
+    else
+      render :new
+    end
   end
 
   private
