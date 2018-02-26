@@ -1,2 +1,3 @@
 # config/application.yml
 GOOGLE_API_SERVER_KEY: AIzaSyA3xkiX0kMMnuTza_hnnlEi9GqsrdXOnn8
+GOOGLE_API_BROWSER_KEY: AIzaSyBFFZIMuQrjyd759rlWJJ5cUA6lFZHf8IA
