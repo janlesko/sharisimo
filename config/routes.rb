@@ -7,5 +7,12 @@ Rails.application.routes.draw do
   resources :devices do
     resources :bookings
   end
+
+  resources :bookings do
+    member do
+      patch "decline"
+      patch "accept"
+    end
+  end
   resources :dashboards, only: [:show]
 end
