@@ -1,8 +1,20 @@
 class DevicesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
+  # def index
+  #   @devices = Device.all
+  # end
+
   def index
-    @devices = Device.all
+    @devices = Device.where.not(latitude: nil, longitude: nil)
+
+    @markers = @devices.map do |d|
+      {
+        lat: d.latitude,
+        lng: d.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/devices/map_box", locals: { device: device }) }
+      }
+    end
   end
 
   def show

@@ -7,6 +7,12 @@
       <div class="card-description">
         <h2><%= link_to device.category, device_path(device) %></h2>
       </div>
+        <div
+        id="map"
+        style="width: 100%;
+        height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        ></div>
     </div>
   </div>
   <% end %>
