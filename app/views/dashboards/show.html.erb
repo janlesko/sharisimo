@@ -1,54 +1,68 @@
-<h1>My Bookings</h1>
-<div class="container">
-  <div class="row">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#renting" role="tab" >Devices I am Renting</a></li>
+  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#requests" role="tab">Rental Requests for my Devices</a></li>
+</ul>
 
-    <% @bookings.each do |booking| %>
-    <div class="col-xs-12 col-sm-6 col-md-4">
+<div class="tab-content">
 
-      <h2><%= booking.device.name %></h2>
+  <div id="renting" class="tab-pane active" role="tabpanel">
+    <div class="container">
+      <h1>Items I am renting</h1>
 
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= booking.device.photo_url %>);">
-        <div class="card-content">
-          <%= booking.device.category %>
+      <div class="row">
+
+        <% @bookings.each do |booking| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+
+          <h2><%= booking.device.name %></h2>
+
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= booking.device.photo_url %>);">
+            <div class="card-content">
+              <%= booking.device.category %>
+            </div>
+          </div>
+
+          <p><%= booking.message %></p>
+          <p>Status: <%= booking.state %></p>
+          <p>Contact: <%= booking.device.user.email %></p>
         </div>
-      </div>
 
-      <p><%= booking.message %></p>
-      <p>Status: <%= booking.state %></p>
-      <p>Contact: <%= booking.device.user.email %>
-    </div>
-
-    <% end %>
-  </div>
-
-  <h1>My Booking requests</h1>
-  <div class="row">
-    <% @devices.each do |device| %>
-    <% if device.bookings.exists? %>
-
-    <div class = "col-xs-12 col-sm-6 col-md-4">
-      <%= device.name %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= device.photo_url %>);">
-        <div class="card-content">
-          <%= device.category %>
-        </div>
-      </div>
-      <% device.bookings.each do |booking| %>
-      <p>Message: <%= booking.message %></p>
-      <p>Contact: <%= booking.user.email %></p>
-      <p>Status: <%= booking.state %></p>
-      <p><%= link_to "Accept", accept_booking_path(booking), method: :patch%> <%= link_to "Decline", decline_booking_path(booking), method: :patch%></p>
-        <% end %>
         <% end %>
       </div>
-
-      <% end %>
-
     </div>
-
-
-
   </div>
+
+
+  <div id="requests" class="tab-pane" role="tabpanel">
+    <div class="container">
+      <h1>My Booking requests</h1>
+      <div class="row">
+        <% @devices.each do |device| %>
+        <% if device.bookings.exists? %>
+
+        <div class = "col-xs-12 col-sm-6 col-md-4">
+          <h2><%= device.name %></h2>
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= device.photo_url %>);">
+            <div class="card-content">
+              <%= device.category %>
+            </div>
+          </div>
+          <% device.bookings.each do |booking| %>
+          <p>Message: <%= booking.message %></p>
+          <p>Contact: <%= booking.user.email %></p>
+          <p>Status: <%= booking.state %></p>
+          <% if booking.state == "pending" %>
+          <p><%= link_to "Accept", accept_booking_path(booking), method: :patch%> <%= link_to "Decline", decline_booking_path(booking), method: :patch%></p>
+          <% end %>
+          <% end %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

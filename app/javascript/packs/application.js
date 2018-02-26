@@ -6,5 +6,11 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+import 'bootstrap'
+import $ from 'jquery'
 
 console.log('Hello World from Webpacker')
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
