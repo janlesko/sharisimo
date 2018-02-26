@@ -21,5 +21,6 @@ end
                 photo_url: photos[category.to_sym].sample,
                 description: lorem,
                 price: Faker::Number.decimal(2),
-                availability: [true, false].sample)
+                availability: [true, false].sample,
+                address: ["Jl. Batu Mejan No.8, Canggu, Kuta Utara, Kabupaten Badung, Bali 80361","Jalan Pura Batu Mejan, Canggu, Kuta Utara, Canggu, Kuta Utara, Kabupaten Badung, Bali 80361","Jalan Pantai Batu Mejan, No. 282 Echo Beach, Canggu, Kuta Utara, Kabupaten Badung, Bali 80361","Jl. Pantai Batu Bolong, Kuta Utara, Canggu, Kuta Utara, Kabupaten Badung, Bali","Jl. Pantai Batu Bolong, Canggu, Kuta Utara, Kabupaten Badung, Bali 80361","Jalan Batu Mejan, Gang Echo, Desa Canggu, Kuta Utara, Canggu, Kuta Utara, Kabupaten Badung, Bali 80361"].sample)
 end
