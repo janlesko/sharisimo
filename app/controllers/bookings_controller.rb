@@ -11,11 +11,27 @@ class BookingsController < ApplicationController
     @device =Device.find(params[:device_id])
     @booking.device =  @device
     @booking.user = current_user
+    @booking.state = "pending"
     if @booking.save
       redirect_to dashboard_path(current_user)
     else
       render :new
     end
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    @booking.state = "declined"
+    @booking.save
+    redirect_to dashboard_path(current_user)
+
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.state = "accepted"
+    @booking.save
+    redirect_to dashboard_path(current_user)
   end
 
   private
