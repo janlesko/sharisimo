@@ -3,7 +3,7 @@
   <div class="row">
    <% @devices.each do |device| %>
    <div class="col-xs-12 col-sm-6 col-md-3">
-     <div class="card"  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= device.photo_url %>); background-size: contain" >
+     <div class="card <%= 'unavailable' unless device.availability %>"  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= device.photo_url %>); background-size: contain" >
       <div class="card-description">
         <h2><%= link_to device.category, device_path(device) %></h2>
       </div>
