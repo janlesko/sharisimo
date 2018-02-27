@@ -6,12 +6,16 @@ photos = { camera: ["https://i.imgur.com/V8GYl2a.jpg", "https://i.imgur.com/EkY4
            scooter: ["https://i.imgur.com/rf53Fuf.jpg", "https://i.imgur.com/VDIzsZm.jpg", "https://i.imgur.com/jmY4wgg.jpg"],
            surfboard: ["https://i.imgur.com/WpS5E1Q.jpg", "https://i.imgur.com/ZUN3DfL.jpg"] }
 
+User.destroy_all
+
 10.times do
   User.create(email: Faker::Internet.email,
               password: Faker::Internet.password(6),
               photo_url: "http://data1.ibtimes.co.in/cache-img-0-450/en/full/639393/1489841887_keanu-reeves.jpg",
               description: lorem)
 end
+
+Device.destroy_all
 
 30.times do
   category = device_categories.sample

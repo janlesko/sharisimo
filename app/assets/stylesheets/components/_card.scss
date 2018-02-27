@@ -5,9 +5,11 @@
   background-position: center;
   color: black;
   position: relative;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 11px;
-  width:275px;
+  width:100%;
+  overflow: hidden;
 }
 .card a {
   color: white;
