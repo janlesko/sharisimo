@@ -1,64 +1,101 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#renting" role="tab" >Devices I am Renting</a></li>
-  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#requests" role="tab">Rental Requests for my Devices</a></li>
+  <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#renting" role="tab" >Devices I am Renting</a></li>
+  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#requests" role="tab">Rental Requests for my Devices</a></li>
 </ul>
 
 <div class="tab-content">
 
   <div id="renting" class="tab-pane active" role="tabpanel">
     <div class="container">
-      <h1>Items I am renting</h1>
+      <h1 class="title">Items I am renting</h1>
 
+
+
+      <% @bookings.each do |booking| %>
       <div class="row">
 
-        <% @bookings.each do |booking| %>
-        <div class="col-xs-12 col-sm-6 col-md-4">
 
-          <h2><%= booking.device.name %></h2>
+        <h2 class="subtitle"><%= booking.device.name %></h2>
+
+        <div class="col-xs-4">
 
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= booking.device.photo_url %>);">
             <div class="card-content">
               <%= booking.device.category %>
             </div>
           </div>
-
-          <p><%= booking.message %></p>
+        </div>
+        <div class="col-xs-4">
+          <p><%= booking.device.description %></p>
+          <p>Owner: <%= booking.device.user.email %></p>
+        </div>
+        <div class="col-xs-2">
           <p>Status: <%= booking.state %></p>
-          <p>Contact: <%= booking.device.user.email %></p>
+          <p>
+          <% if booking.state == "accepted" %>
+          <i class="fas fa-thumbs-up"></i>
+          <% elsif booking.state == "declined" %>
+          <i class="fas fa-thumbs-down"></i>
+          <% elsif booking.state == "pending" %>
+          <i class="fas fa-question"></i>
+          <% end %></p>
+        </div>
+        <div class="col-xs-2">
+
+          <p>$<%= booking.device.price %></p>
         </div>
 
-        <% end %>
+
       </div>
+      <% end %>
     </div>
   </div>
 
 
   <div id="requests" class="tab-pane" role="tabpanel">
     <div class="container">
-      <h1>My Booking requests</h1>
-      <div class="row">
-        <% @devices.each do |device| %>
-        <% if device.bookings.exists? %>
+      <h1 class="title">My Booking requests</h1>
 
-        <div class = "col-xs-12 col-sm-6 col-md-4">
-          <h2><%= device.name %></h2>
+      <% @devices.each do |device| %>
+      <% if device.bookings.exists? %>
+
+      <div class="row">
+        <h2 class="subtitle"><%= device.name %></h2>
+
+        <div class = "col-xs-4">
+
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= device.photo_url %>);">
             <div class="card-content">
               <%= device.category %>
             </div>
           </div>
-          <% device.bookings.each do |booking| %>
-          <p>Message: <%= booking.message %></p>
-          <p>Contact: <%= booking.user.email %></p>
+        </div>
+        <% device.bookings.each do |booking| %>
+        <div class = "col-xs-4">
+          <p>"<%= booking.message %>"</p>
+          <p>Requested By: <%= booking.user.email %></p>
+        </div>
+        <div class = "col-xs-2">
           <p>Status: <%= booking.state %></p>
-          <% if booking.state == "pending" %>
-          <p><%= link_to "Accept", accept_booking_path(booking), method: :patch%> <%= link_to "Decline", decline_booking_path(booking), method: :patch%></p>
-          <% end %>
+          <% if booking.state == "accepted" %>
+          <i class="fas fa-thumbs-up"></i>
+          <% elsif booking.state == "declined" %>
+          <i class="fas fa-thumbs-down"></i>
+          <% elsif booking.state == "pending" %>
+          <p><%= link_to "Accept", accept_booking_path(booking), method: :patch, class: 'btn btn-primary'%> <%= link_to "Decline", decline_booking_path(booking), method: :patch, class: 'btn btn-danger'%></p>
           <% end %>
           <% end %>
         </div>
-        <% end %>
+        <div class = "col-xs-2">
+          <p>$<%= device.price %></p>
+
+
+
+
+        </div>
       </div>
+      <% end %>
+      <% end %>
     </div>
   </div>
 </div>
