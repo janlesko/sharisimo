@@ -1,11 +1,9 @@
 class DevicesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
-  # def index
-  #   @devices = Device.all
-  # end
-
   def index
+    flash[:alert] = nil
+
     @devices = Device.where.not(latitude: nil, longitude: nil)
 
     @markers = @devices.map do |d|
@@ -18,12 +16,13 @@ class DevicesController < ApplicationController
   end
 
   def show
+    flash[:alert] = nil
     @device = Device.find(params[:id])
+    flash[:alert] = "Device is not available" unless @device.availability
   end
 
   def new
     @device = Device.new
-
   end
 
   def create
