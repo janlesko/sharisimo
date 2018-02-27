@@ -1,4 +1,5 @@
 <div class="container">
+  <h1 class="title">Canggu devices:</h1>
   <%= form_tag devices_path, method: :get do %>
   <%= date_field_tag :query,
   params[:query],
@@ -6,7 +7,6 @@
     placeholder: Date.today
     %>
     <% end %>
-  <h1 class="title">Canggu devices:</h1>
   <div class="row">
    <% @devices.each do |device| %>
    <div class="col-xs-12 col-sm-6 col-md-3" style="overflow: hidden;">
