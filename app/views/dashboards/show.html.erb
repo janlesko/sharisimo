@@ -1,3 +1,4 @@
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#renting" role="tab" >Devices I am Renting</a></li>
   <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#requests" role="tab">Rental Requests for my Devices</a></li>
@@ -34,10 +35,13 @@
           <p>
           <% if booking.state == "accepted" %>
           <i class="fas fa-thumbs-up"></i>
+          <p>Booked from: <%= booking.startdate %> to: <%= booking.enddate %></p>
           <% elsif booking.state == "declined" %>
           <i class="fas fa-thumbs-down"></i>
+           <p>Request Denied from: <%= booking.startdate %> to: <%= booking.enddate %></p>
           <% elsif booking.state == "pending" %>
           <i class="fas fa-question"></i>
+          <p>Requested from: <%= booking.startdate %> to: <%= booking.enddate %></p>
           <% end %></p>
         </div>
         <div class="col-xs-2">
@@ -79,10 +83,13 @@
           <p>Status: <%= booking.state %></p>
           <% if booking.state == "accepted" %>
           <i class="fas fa-thumbs-up"></i>
+          <p>Booked from: <%= booking.startdate %> to: <%= booking.enddate %></p>
           <% elsif booking.state == "declined" %>
           <i class="fas fa-thumbs-down"></i>
+          <p>Request Denied from: <%= booking.startdate %> to: <%= booking.enddate %></p>
           <% elsif booking.state == "pending" %>
           <p><%= link_to "Accept", accept_booking_path(booking), method: :patch, class: 'btn btn-primary'%> <%= link_to "Decline", decline_booking_path(booking), method: :patch, class: 'btn btn-danger'%></p>
+          <p>Requested from: <%= booking.startdate %> to: <%= booking.enddate %></p>
           <% end %>
           <% end %>
         </div>

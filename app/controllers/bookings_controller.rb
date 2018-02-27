@@ -31,12 +31,14 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.state = "accepted"
     @booking.save
+    @booking.device.availability = false
+    @booking.device.save
     redirect_to dashboard_path(current_user)
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:message)
+    params.require(:booking).permit(:message, :startdate, :enddate)
   end
 end

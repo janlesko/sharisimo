@@ -1,4 +1,11 @@
 <div class="container">
+  <%= form_tag devices_path, method: :get do %>
+  <%= date_field_tag :query,
+  params[:query],
+  class: "form-control",
+    placeholder: Date.today
+    %>
+    <% end %>
   <h1 class="title">Canggu devices:</h1>
   <div class="row">
    <% @devices.each do |device| %>
