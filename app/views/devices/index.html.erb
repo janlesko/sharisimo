@@ -1,5 +1,12 @@
 <div class="container">
   <h1>Canggu devices:</h1>
+  <%= form_tag devices_path, method: :get do %>
+  <%= date_field_tag :query,
+  params[:query],
+  class: "form-control",
+    placeholder: Date.today
+    %>
+    <% end %>
   <div class="row">
    <% @devices.each do |device| %>
    <div class="col-xs-12 col-sm-6 col-md-3">
